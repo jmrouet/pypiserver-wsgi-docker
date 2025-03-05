@@ -27,7 +27,7 @@ It is inspired from [this repo](https://github.com/carlostighe/apache-flask.git)
 When running the above, we can see the following error:
 
 ```
-$ uv publish --publish-url http://localhost/pip --username "test"                                                                                                                                                                    pwsh  09:21:27  
+$ uv publish --publish-url http://localhost/pip --username "test" dist/mypackage-*
 Publishing 2 files http://localhost/pip
 Uploading mypackage-0.1.0-py3-none-any.whl (1.2KiB)
 error: Failed to publish `dist\mypackage-0.1.0-py3-none-any.whl` to http://localhost/pip
@@ -50,6 +50,17 @@ error: Failed to publish `dist\mypackage-0.1.0-py3-none-any.whl` to http://local
             <pre>Error while parsing chunked transfer body.</pre>
         </body>
     </html>
+```
+
+and runing the same with twine works
+
+```
+$ uvx twine upload --repository-url http://localhost/pip -u test-twine -p '_'  dist/mypackage-*
+Uploading distributions to http://localhost/pip
+Uploading mypackage-0.1.0-py3-none-any.whl
+100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 kB • 00:00 • ?
+Uploading mypackage-0.1.0.tar.gz
+100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.6/2.6 kB • 00:00 • ?
 ```
 
 
